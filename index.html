@@ -57,14 +57,14 @@
 		.fork{
 			position:absolute;
 		}
-		#fork1{
+		#fork9{
 			left:165px;
 			top:100px;
 			-webkit-transform: rotate(130deg) scale(0.5);
 		    -o-transform: rotate(130deg) scale(0.5); 
 		    transform: rotate(130deg) scale(0.5);
 		}
-		#fork3{
+		#fork7{
 			left:310px;
 			top:55px;
 			-webkit-transform: rotate(200deg) scale(0.5);
@@ -78,14 +78,14 @@
 		    -o-transform: rotate(270deg) scale(0.5); 
 		    transform: rotate(270deg) scale(0.5);
 		}
-		#fork7{
+		#fork3{
 			left:320px;
 			top:240px;
 			-webkit-transform: rotate(335deg) scale(0.5);
 		    -o-transform: rotate(335deg) scale(0.5); 
 		    transform: rotate(335deg) scale(0.5);
 		}
-		#fork9{
+		#fork1{
 			left:177px;
 			top:222px;
 			-webkit-transform: rotate(55deg) scale(0.5);
@@ -110,15 +110,18 @@
 			font-size: 16pt;
 			color:black;
 			top:210px;
-			left:;
+			left:30px;
 		}
 		.rightArm{
 			float:right;
 			position:relative;
+
+			top:-100px;
 		}
 		.leftArm{
 			float:left;
 			position:relative;
+			top:-100px;
 		}
 		.body{
 			position:absolute;
@@ -140,7 +143,7 @@
 		    -o-transform:translate(0px) rotate(90deg) scale(0.5); 
 		    transform: translate(0px) rotate(90deg) scale(0.5);
 		}
-		#laotsu{
+		#mohammed{
 			position:absolute;
 			top:0px;
 			left:100px;
@@ -149,7 +152,7 @@
 		    -o-transform:translate(0px) rotate(162deg) scale(0.5); 
 		    transform: translate(0px) rotate(162deg) scale(0.5);
 		}
-		#buddha{
+		#jesus{
 			position:absolute;
 			left:285px;
 			top:30px;
@@ -158,7 +161,7 @@
 		    -o-transform:translate(0px) rotate(234deg) scale(0.5); 
 		    transform: translate(0px) rotate(234deg) scale(0.5);
 		}
-		#jesus{
+		#buddha{
 			position:absolute;
 			left:300px;
 			top:200px;
@@ -166,7 +169,7 @@
 		    -o-transform:translate(0px) rotate(306deg) scale(0.5); 
 		    transform: translate(0px) rotate(306deg) scale(0.5);
 		}
-		#mohammed{
+		#laotsu{
 			position:absolute;
 			top:260px;
 			left:130px;
@@ -184,18 +187,23 @@
 			<option value="conductor">Conductor Solution</option>
 			<option value="resource_hierarchy">Resource Hierarchy Solution</option>
 			<option value="chandry_misra">Chandry/Misra Solution</option>
-		</select><br>
-		<textarea id = "user_input" style="font-size:12pt">if(!philo.isEating){
-	&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Left")){
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(philo.isForkOnTable("Left")){
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;philo.pickUpFork("Left");
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-	&nbsp;&nbsp;&nbsp;&nbsp;}
-	&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Right")){
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	if(philo.isForkOnTable("Right")){
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		philo.pickUpFork("Right");
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-	&nbsp;&nbsp;&nbsp;&nbsp;}
+		</select>
+		Difficulty:
+		<input type="text" placeholder="100" id="difficulty" value="100"></input>
+		<br>
+		<textarea id = "user_input" style="font-size:12pt">if(philo.lifeRemaining()<=50){
+&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.isEating()){
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Left")){
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(philo.isForkOnTable("Left")){
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;philo.pickUpFork("Left");
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Right")){
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	if(philo.isForkOnTable("Right")){
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		philo.pickUpFork("Right");
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
 }
 		</textarea>
 		<button id="simulate">Simulate</button>
@@ -213,11 +221,11 @@
 				<div class="nametag">Socrates</div>
 				<div class="socrates lifebar"></div>
 				<div class = "rightArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<img src = "images/body.png" class = "body">
@@ -227,11 +235,11 @@
 				<div class="nametag">Lao Tsu</div>
 				<div class="laotsu lifebar"></div>
 				<div class = "rightArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<img src = "images/body.png" class = "body">
@@ -241,11 +249,11 @@
 				<div class="nametag">Buddha</div>
 				<div class="buddha lifebar"></div>
 				<div class = "rightArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<img src = "images/body.png" class = "body">
@@ -254,11 +262,11 @@
 				<div class="nametag">Jesus</div>
 				<div class="jesus lifebar"></div>
 				<div class = "rightArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<img src = "images/body.png" class = "body">
@@ -267,11 +275,11 @@
 				<div class="nametag">Mohammed</div>
 				<div class="mohammed lifebar"></div>
 				<div class = "rightArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "images/arm-empty.png" class = "empty">
+					<!-- <img src = "images/arm-empty.png" class = "empty"> -->
 					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<img src = "images/body.png" class = "body">
