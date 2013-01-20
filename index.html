@@ -1,8 +1,6 @@
 <!doctype html>
 <html>
 	<head>
-		<script src = "zepto.js"></script>
-		<script src = "index.js"></script>
 		<title>Dining Philosophers</title>
 		<center id="intro">
 			<h1><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">
@@ -17,6 +15,11 @@
 	<style>
 		body{
 			font-family:arial,helvetica,sans-serif;
+			color:white;
+			background-color:black;
+		}
+		a{
+			color:#CCC;
 		}
 		#intro{
 			max-width:800px;
@@ -30,6 +33,7 @@
 		}
 		#simulate{
 			float:left;
+			width:150px;
 			padding:10px;
 			font-size:18pt;
 			background-color:#DFD;
@@ -50,9 +54,63 @@
 			margin-top:80px;
 			margin-left:140px;
 		}
+		.fork{
+			position:absolute;
+		}
+		#fork1{
+			left:165px;
+			top:100px;
+			-webkit-transform: rotate(130deg) scale(0.5);
+		    -o-transform: rotate(130deg) scale(0.5); 
+		    transform: rotate(130deg) scale(0.5);
+		}
+		#fork3{
+			left:310px;
+			top:55px;
+			-webkit-transform: rotate(200deg) scale(0.5);
+		    -o-transform: rotate(200deg) scale(0.5); 
+		    transform: rotate(200deg) scale(0.5);
+		}
+		#fork5{
+			left:385px;
+			top:145px;
+			-webkit-transform: rotate(270deg) scale(0.5);
+		    -o-transform: rotate(270deg) scale(0.5); 
+		    transform: rotate(270deg) scale(0.5);
+		}
+		#fork7{
+			left:320px;
+			top:240px;
+			-webkit-transform: rotate(335deg) scale(0.5);
+		    -o-transform: rotate(335deg) scale(0.5); 
+		    transform: rotate(335deg) scale(0.5);
+		}
+		#fork9{
+			left:177px;
+			top:222px;
+			-webkit-transform: rotate(55deg) scale(0.5);
+		    -o-transform: rotate(55deg) scale(0.5); 
+		    transform: rotate(55deg) scale(0.5);
+		}
 		.philosopher{
 			position:relative;
 			width:260px;
+			height:180px;
+		}
+		.lifebar{
+			position:relative;
+			width:200px;
+			background-color:red;
+			height:7px;
+			top:200px;
+			left:30px;
+		}
+		.nametag{
+			position:absolute;
+			font-size: 16pt;
+			color:black;
+			top:210px;
+			left:;
 		}
 		.rightArm{
 			float:right;
@@ -122,76 +180,107 @@
 
 	<body>
 		<select type="dropdown" style="font-size:18pt;padding:5px">
-			<option value="default">Basic deadlocked solution</option>
+			<option value="default">Basic selfish behavior</option>
 			<option value="conductor">Conductor Solution</option>
 			<option value="resource_hierarchy">Resource Hierarchy Solution</option>
 			<option value="chandry_misra">Chandry/Misra Solution</option>
 		</select><br>
-		<textarea id = "user_input"></textarea>
+		<textarea id = "user_input" style="font-size:12pt">if(!philo.isEating){
+	&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Left")){
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(philo.isForkOnTable("Left")){
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;philo.pickUpFork("Left");
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+	&nbsp;&nbsp;&nbsp;&nbsp;}
+	&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Right")){
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	if(philo.isForkOnTable("Right")){
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		philo.pickUpFork("Right");
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+	&nbsp;&nbsp;&nbsp;&nbsp;}
+}
+		</textarea>
 		<button id="simulate">Simulate</button>
 
 		<div id="philosopherBox">
 			<div id="table">
-				<img src="spaghetti.png" style="position:relative;left:80px;top:50px">
+				<img src="images/spaghetti.png" style="position:relative;left:80px;top:50px">
+				<img src="images/fork.png" class="fork" id="fork1">
+				<img src="images/fork.png" class="fork" id="fork3">
+				<img src="images/fork.png" class="fork" id="fork5">
+				<img src="images/fork.png" class="fork" id="fork7">
+				<img src="images/fork.png" class="fork" id="fork9">
 			</div>
 			<div class="philosopher" id="socrates">
+				<div class="nametag">Socrates</div>
+				<div class="socrates lifebar"></div>
 				<div class = "rightArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
-				<img src = "body.png" class = "body">
+				<img src = "images/body.png" class = "body">
 			</div>
 
 			<div class="philosopher" id="laotsu">
+				<div class="nametag">Lao Tsu</div>
+				<div class="laotsu lifebar"></div>
 				<div class = "rightArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
-				<img src = "body.png" class = "body">
+				<img src = "images/body.png" class = "body">
 			</div>
 
 			<div class="philosopher" id="buddha">
+				<div class="nametag">Buddha</div>
+				<div class="buddha lifebar"></div>
 				<div class = "rightArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
-				<img src = "body.png" class = "body">
+				<img src = "images/body.png" class = "body">
 			</div>
 			<div class="philosopher" id="jesus">
+				<div class="nametag">Jesus</div>
+				<div class="jesus lifebar"></div>
 				<div class = "rightArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
-				<img src = "body.png" class = "body">
+				<img src = "images/body.png" class = "body">
 			</div>
 			<div class="philosopher" id="mohammed">
+				<div class="nametag">Mohammed</div>
+				<div class="mohammed lifebar"></div>
 				<div class = "rightArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
 				<div class = "leftArm">
-					<img src = "arm-empty.png" class = "empty">
-					<img src = "arm-fork.png" class = "forked">
+					<img src = "images/arm-empty.png" class = "empty">
+					<img src = "images/arm-fork.png" class = "forked">
 				</div>
-				<img src = "body.png" class = "body">
+				<img src = "images/body.png" class = "body">
 			</div>
 		</div>
 
 	</body>
+
+
+		<script src = "zepto.js"></script>
+		<script src = "index.js"></script>
 </html>
