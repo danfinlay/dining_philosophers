@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<script src = "zepto.js"></script>
+		<script src = "index.js"></script>
+		<title>Dining Philosophers</title>
+		<center id="intro">
+			<h1><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">
+				Dining Philosophers Problem
+			</a></h1>
+			<h2>
+				These five philosophers are very hungry, but this plate of spaghetti is so big that it takes anyone two forks just to feed themselves!  Unfortunately there are only five forks for these five philosophers.  Can you write a philosophy for them to follow that will allow them all to be fed?  If you do, try turning up the difficulty (how fast they get hungry), and try to set a new record!
+			</h2>
+		</center>
+	</head>
+
+	<style>
+		body{
+			font-family:arial,helvetica,sans-serif;
+		}
+		#intro{
+			max-width:800px;
+			margin:0 auto;
+		}
+		#user_input{
+			float:left;
+			width:500px;
+			height:400px;
+			margin:10px;
+		}
+		#simulate{
+			float:left;
+			padding:10px;
+			font-size:18pt;
+			background-color:#DFD;
+			border-radius:5px;
+		}
+		#philosopherBox{
+			position:relative;
+			width:550px;
+			height:450px;
+			float:left;
+			background-color:#CCC;
+		}
+		#table{
+			height:250px;
+			width:310px;
+			background-color:#750;
+			border-radius:150px;
+			margin-top:80px;
+			margin-left:140px;
+		}
+		.philosopher{
+			position:relative;
+			width:260px;
+		}
+		.rightArm{
+			float:right;
+			position:relative;
+		}
+		.leftArm{
+			float:left;
+			position:relative;
+		}
+		.body{
+			position:absolute;
+			right:20px;
+			top:70px;
+			/*top:130px;*/
+		}
+		.forked{
+			display:none;
+		}
+		.empty{
+			
+		}
+
+		#socrates{
+			position:absolute;
+			top:130px;
+			-webkit-transform: translate(0px) rotate(90deg) scale(0.5);
+		    -o-transform:translate(0px) rotate(90deg) scale(0.5); 
+		    transform: translate(0px) rotate(90deg) scale(0.5);
+		}
+		#laotsu{
+			position:absolute;
+			top:0px;
+			left:100px;
+
+			-webkit-transform: translate(0px) rotate(162deg) scale(0.5);
+		    -o-transform:translate(0px) rotate(162deg) scale(0.5); 
+		    transform: translate(0px) rotate(162deg) scale(0.5);
+		}
+		#buddha{
+			position:absolute;
+			left:285px;
+			top:30px;
+
+			-webkit-transform: translate(0px) rotate(234deg) scale(0.5);
+		    -o-transform:translate(0px) rotate(234deg) scale(0.5); 
+		    transform: translate(0px) rotate(234deg) scale(0.5);
+		}
+		#jesus{
+			position:absolute;
+			left:300px;
+			top:200px;
+			-webkit-transform: translate(0px) rotate(306deg) scale(0.5);
+		    -o-transform:translate(0px) rotate(306deg) scale(0.5); 
+		    transform: translate(0px) rotate(306deg) scale(0.5);
+		}
+		#mohammed{
+			position:absolute;
+			top:260px;
+			left:130px;
+			
+			-webkit-transform: translate(0px) rotate(18deg) scale(0.5);
+		    -o-transform:translate(0px) rotate(18deg) scale(0.5); 
+		    transform: translate(0px) rotate(18deg) scale(0.5);
+		}
+
+	</style>
+
+	<body>
+		<select type="dropdown" style="font-size:18pt;padding:5px">
+			<option value="default">Basic deadlocked solution</option>
+			<option value="conductor">Conductor Solution</option>
+			<option value="resource_hierarchy">Resource Hierarchy Solution</option>
+			<option value="chandry_misra">Chandry/Misra Solution</option>
+		</select><br>
+		<textarea id = "user_input"></textarea>
+		<button id="simulate">Simulate</button>
+
+		<div id="philosopherBox">
+			<div id="table">
+				<img src="spaghetti.png" style="position:relative;left:80px;top:50px">
+			</div>
+			<div class="philosopher" id="socrates">
+				<div class = "rightArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<div class = "leftArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<img src = "body.png" class = "body">
+			</div>
+
+			<div class="philosopher" id="laotsu">
+				<div class = "rightArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<div class = "leftArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<img src = "body.png" class = "body">
+			</div>
+
+			<div class="philosopher" id="buddha">
+				<div class = "rightArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<div class = "leftArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<img src = "body.png" class = "body">
+			</div>
+			<div class="philosopher" id="jesus">
+				<div class = "rightArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<div class = "leftArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<img src = "body.png" class = "body">
+			</div>
+			<div class="philosopher" id="mohammed">
+				<div class = "rightArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<div class = "leftArm">
+					<img src = "arm-empty.png" class = "empty">
+					<img src = "arm-fork.png" class = "forked">
+				</div>
+				<img src = "body.png" class = "body">
+			</div>
+		</div>
+
+	</body>
+</html>
