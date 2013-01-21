@@ -80,7 +80,7 @@ var philosopher = function(){
 			if(this.timeSpentEating === 0) this.eating = false
 			//if(!this.eating) this.health -= healthLossPerTic
 			if(this.health<=0) {
-				alert(this.name+" died after "+tickCounter*tickLength/1000+" weeks! You lose!")
+				alert(this.name+" died after "+tickCounter*tickLength/2000+" weeks! You lose!")
 				clearInterval(mainInterval)
 				simulating=false
 				for(var l=0; l<philosophers.length;l++){
@@ -120,6 +120,18 @@ var philosopher = function(){
 					return "Fork right of "+this.name+" is missing!"
 				}
 			}
+		}
+		this.putDownFork=function(which){
+			if(this.holdingFor(which)){
+				if(which==="Left"){
+					//console.log("Wanting a left fork"+this.leftForkNum)
+					philosophers[this.leftForkNum]="A Fork"	
+					this.forksInHand.left = false
+				}else{
+					philosophers[this.rightForkNum]="A Fork"	
+					this.forksInHand.right = false
+				}
+			}	
 		}
 		this.isForkOnTable=function(which){
 			//console.log("Checking if holding "+which +" which is "+ this.forksOnTable.left+this.forksOnTable.right)

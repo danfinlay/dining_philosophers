@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<style>
+	body{
+		background-color:#CCF;
+		font-family:arial,helvetica,sans-serif;
+		max-width:800px;
+		margin: 0 auto;
+		padding:10px;
+	}
+	code{
+		background-color:#DDD;
+	}
+	table{
+		background-color:#FFF;
+		border:0px black;
+		margin:0px auto;
+	}
+	.blue{
+		color:blue;
+	}
+	.red{
+		color:red;
+	}
+</style>
+<title>Instructions for the Dining Philosophers Game</title>
+<h1>Instructions for <a href="index.html">The Dining Philosophers Game</a></h1>
+</head>
+<body>
+<h2>Below I've written a primer on just enough Javascript.  Or, you can <a href="#api">skip to the API</a></h2>
+
+<h3>Just enough Javascript</h3>
+<p>
+	The dining philosophers widget uses pre-made objects to allow anyone to experiment with solutions to this classic puzzle.  Here on this single page I've included enough javascript for anyone to try writing their own solutions, and I hope you will!  Who knows, maybe you'll realize how easy programming can be, and finally try something you'd wished to.
+</p>
+<p>
+	In Javascript we have <em>objects</em>, and those objects can have different <em>functions</em>, or behaviors associated with them.
+</p>
+<p>
+	To have your philosopher perform one of their functions, you will type something like this:
+</p>
+<code>
+	philo.pickUpFork("Right")
+</code>
+<p>
+	As you can see, you start by typing "philo", type a ".", then use the name of the function you'd like to perform.  In this case, we're asking our philosopher to pick up his right fork.
+</p>
+<p>
+	Functions always have a pair of parentheses after their names when they're being asked to do things, and these parentheses can include special <em>parameters</em> or <em>arguments</em>.  Those are fancy words for input.  For example, the previous function can be used to pick up the "Right" or "Left" fork, depending on which is typed in its parentheses. Don't forget those quotation marks!
+</p>
+<p>
+	Some functions are like asking questions of the object (or philosopher), and can be used in conditional (if) statements!  For example, you could write:
+</p>
+<code>
+	if(philo.holdingFork("Left")){ <br>
+	&nbsp;&nbsp;philo.putDownFork("Left") <br>
+	}
+</code>
+<p>
+	In this example, the function putDownFork() is wrapped up in an "if" statement.  Without any functions, an if statement looks like this:
+</p>
+<code>
+	if(){}
+</code>
+<p>
+	It looks pretty lonely like this, but you can plainly see that the special <em>if</em> function has both parentheses after it, which takes a <span class="blue">true</span> or <span class="red">false</span> statement.  Then, depending on whether the statement was true or false, the program will execute the code between the <em>curly braces</em>.
+</p>
+<p>
+	An if statement can take all types of true/false statements.  Sometimes you want to compare two numbers!  For example, this statement will always equal <span class="blue">true</span> or <span class="red">false</span>.
+</p>
+<code>
+	philo.lifeRemaining() < 50
+</code>
+<p>
+	Here we've made a statement that checks if the philosopher's life is less than 50.  You might recognize the less-than symbol (<) from math class, and it's no different here!  In fact, there are several such "operators" we can use to make true or false statements:
+</p>
+<table>
+	<tr>
+		<td>&lt;</td>
+		<td>Less Than</td>
+	</tr>
+	<tr>
+		<td>&gt;</td>
+		<td>Greater Than Than</td>
+	</tr>
+	<tr>
+		<td>&lt;=</td>
+		<td>Less Than or Equal To</td>
+	</tr>
+	<tr>
+		<td>&gt;=</td>
+		<td>Greater Than or Equal To</td>
+	</tr>
+	<tr>
+		<td>===</td>
+		<td>Equal To</td>
+	</tr>
+	<tr>
+		<td>!==</td>
+		<td>Not Equal To</td>
+	</tr>
+</table>
+<p>
+	Also, an exclaimation mark ("!") before a true/false statement makes it the opposite.  For example:
+</p>
+<code>
+if(!philo.isEating()){<br>
+			&nbsp;&nbsp;philo.pickUpFork("Left");<br>
+		}
+</code>
+<p>
+	Translates to "If the philosopher is <em>not</em> eating, pick up the left fork."
+</p>
+<p>
+	Well, that should be enough to get started!  Below I've got the API, which is an <em>Application Programmer's Interface</em>.  It's like a programmer's dictionary.  It tells you all the functions you need to know to use this particular program.
+</p>
+
+
+<a name="api"><h3>The API</h3></a>
+All of these functions belong to the "philo" object, which means you use it by typing "philo." and then the function name.
+<h4>pickUpFork("Left"/"Right")</h4>
+Will pick up the fork to the right or left of the philosopher, if it's available.
+<h4>putDownFork("Left"/"Right")</h4>
+Will put down the specified fork if the philosopher is holding it.
+<h4>isForkOnTable("Left"/"Right")</h4>
+Equals a "true" or "false" depending on whether the specified fork is on the table, available to be picked up.
+<h4>holdingFork("Left"/"Right")</h4>
+Equals a "true" or "false", depending on whether the specified fork is being held, making eating possible (if both are held), and available to be put down.
+<h4>isEating()</h4>
+Equals "true" or "false", depending on whether the philosopher is holding two forks and is therefore able to fill up on pasta.
+<h4>lifeRemaining()</h4>
+Equals the amount of life this philosopher has, on a scale from 0 to 100.  Once the life equals 0, the philosopher will die!
+
+
+</body>
+</html>

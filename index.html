@@ -4,11 +4,12 @@
 		<title>Dining Philosophers</title>
 		<center id="intro">
 			<h1><a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">
-				Dining Philosophers Problem
+				Dining Philosophers Game
 			</a></h1>
 			<h2>
 				These five philosophers are very hungry, but this plate of spaghetti is so big that it takes anyone two forks just to feed themselves!  Unfortunately there are only five forks for these five philosophers.  Can you write a philosophy for them to follow that will allow them all to be fed?  If you do, try turning up the difficulty (how fast they get hungry), and try to set a new record!
 			</h2>
+			Want to learn just enough javascript, or see the API? <a href="instructions.html">Click here!</a>
 		</center>
 	</head>
 
@@ -200,11 +201,13 @@
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!philo.holdingFork("Right")){
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	if(philo.isForkOnTable("Right")){
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		philo.pickUpFork("Right");
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		philo.pickUpFork("Right")
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
 &nbsp;&nbsp;&nbsp;&nbsp;}
 }
+//An unused but selfless action:
+//philo.putDownFork("Left")
 		</textarea>
 		<button id="simulate">Simulate</button>
 
