@@ -183,11 +183,12 @@
 	</style>
 
 	<body>
-		<select type="dropdown" style="font-size:18pt;padding:5px">
+		<select type="dropdown" style="font-size:18pt;padding:5px" id="strategySelector">
 			<option value="default">Basic selfish behavior</option>
-			<option value="conductor">Conductor Solution</option>
+			<option value="patient">Polite fork picking</option>
+			<!-- <option value="conductor">Conductor Solution</option>
 			<option value="resource_hierarchy">Resource Hierarchy Solution</option>
-			<option value="chandry_misra">Chandry/Misra Solution</option>
+			<option value="chandry_misra">Chandry/Misra Solution</option> -->
 		</select>
 		Difficulty:
 		<input type="text" placeholder="100" id="difficulty" value="100"></input>
@@ -293,5 +294,6 @@
 
 
 		<script src = "zepto.js"></script>
+		<script src = "examples.js"></script>
 		<script src = "index.js"></script>
 </html>

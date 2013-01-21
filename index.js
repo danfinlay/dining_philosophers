@@ -98,7 +98,7 @@ var philosopher = function(){
 			if(which==="Left"){
 				//console.log("Wanting a left fork"+this.leftForkNum)
 				if(philosophers[this.leftForkNum]!==undefined){
-					console.log(this.name+" picking up a left fork, undefining "+this.leftForkNum)
+					//console.log(this.name+" picking up a left fork, undefining "+this.leftForkNum)
 					philosophers[this.leftForkNum]=undefined
 					this.forksInHand.left = true
 					//philosophers[this.leftForkNum-1].forksOnTable.right = false
